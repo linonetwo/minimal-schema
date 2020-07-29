@@ -1,5 +1,6 @@
-import empty from '../src/empty'
 import chai from 'chai'
+
+import {empty} from '../src/empty'
 
 chai.should()
 

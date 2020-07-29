@@ -1,5 +1,6 @@
-import empty from '../src/empty'
-import chai  from 'chai'
+import chai from 'chai'
+
+import {empty} from '../src/empty'
 
 chai.should()
 
@@ -66,7 +67,6 @@ chai.should()
 
 //   return res
 // }
-
 
 describe('integers', () => {
   // it('should generate correct multiples', () => {
