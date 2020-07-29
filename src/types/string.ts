@@ -1,12 +1,17 @@
-export default function _string({format} = {}) {
+export type StringSchema = {
+    type: string,
+    format?: string
+}
+
+export function string({format}: StringSchema = {type: 'string'}): string {
   if (!format || !defaultFormatValues[format]) {
     return ''
   }
 
-  return defaultFormatValues[format]();
+  return defaultFormatValues[format]()
 }
 
-const defaultFormatValues = {
+const defaultFormatValues: Record<string, () => string> = {
   date: () => new Date().toISOString().split('T')[0],
   time: () => new Date().toISOString().split('T')[1],
   uri: () => 'a:',

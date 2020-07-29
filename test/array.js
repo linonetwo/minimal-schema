@@ -1,37 +1,38 @@
-import empty from '../src/empty'
-import chai from 'chai'
+import chai from 'chai';
 
-chai.should()
+import empty from '../src/empty';
+
+chai.should();
 
 describe('array schema definition', () => {
 
   it('should yield empty array', (done) => {
     empty({
       type: 'array'
-    }).should.deep.equal([])
+    }).should.deep.equal([]);
 
-    done()
-  })
+    done();
+  });
 
   it('should work with tuples', (done) => {
     empty({
       type: 'array',
       items: [
-        { type: 'integer' },
-        { type: 'string' }
+        {type: 'integer'},
+        {type: 'string'}
       ]
-    }).should.deep.equal([0, ''])
+    }).should.deep.equal([0, '']);
 
-    done()
-  })
+    done();
+  });
 
   it('should work with minItems', (done) => {
     empty({
       type: 'array',
-      items:{ type: 'integer' },
+      items:{type: 'integer'},
       minItems: 5
-    }).should.deep.equal([0, 0, 0, 0, 0])
+    }).should.deep.equal([0, 0, 0, 0, 0]);
 
-    done()
-  })
-})
+    done();
+  });
+});

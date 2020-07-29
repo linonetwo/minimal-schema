@@ -1,77 +1,94 @@
+import {DummySchema} from './types'
+
 // create smallest number that is greater than minimum and a mulitple of multipleOf
-export function minmul(minimum, multipleOf, exclusive) {
+export function minmul(minimum: number, multipleOf: number, exclusive: number) {
   if (( minimum < 0 ) || ( !exclusive && minimum <= 0 )) {
     return 0
   }
 
-  const min  = exclusive ? minimum + 1 : minimum
+  const min = exclusive ? minimum + 1 : minimum
   const rest = min % multipleOf
 
   if ( rest === 0 ) {
     return min
   }
 
-  const sign = multipleOf  / Math.abs(multipleOf)
+  const sign = multipleOf / Math.abs(multipleOf)
   const quot = (min - rest) / multipleOf
 
   return (quot + sign) * multipleOf
 }
 
 // create smallest number that is greater than minimum and a mulitple of multipleOf
-export function maxmul(maximum, multipleOf, exclusive) {
+export function maxmul(maximum: number, multipleOf: number, exclusive: number) {
   const res = -minmul(-maximum, multipleOf, exclusive)
 
-  return res;
+  return res
 }
 
-export function _integer(schema) {
+type ItegerSchema = {
+    multipleOf: number,
+    minimum: number,
+    maximum: number,
+    exclusiveMinimum: number,
+    exclusiveMaximum: number
+}
+
+export function integer(schema: DummySchema) {
   const {
     multipleOf,
     minimum,
     maximum,
     exclusiveMinimum,
     exclusiveMaximum
-  } = schema
+  } = schema as ItegerSchema
 
   const mo = !Object.is(multipleOf, undefined)
   const mi = !Object.is(minimum, undefined)
   const ma = !Object.is(maximum, undefined)
 
-  if ( (  mo &&  mi &&  ma ) ||
-       ( !mo &&  mi &&  ma ) ) {
+  if ( ( mo && mi && ma ) ||
+         ( !mo && mi && ma ) ) {
     // minimum and maximum
-    if (    (( minimum < 0 ) || ( !exclusiveMinimum && minimum <= 0 ))
-         && (( maximum > 0 ) || ( !exclusiveMaximum && maximum >= 0 ))) {
+    if ( (( minimum < 0 ) || ( !exclusiveMinimum && minimum <= 0 )) &&
+           (( maximum > 0 ) || ( !exclusiveMaximum && maximum >= 0 ))) {
       return 0
-    } else {
-      return exclusiveMinimum ? minimum + 1 : minimum
     }
-  } else if (  mo && !mi &&  ma ) {
+    return exclusiveMinimum ? minimum + 1 : minimum
+
+  }
+
+  if ( mo && !mi && ma ) {
     // multipleOf and maximum
     return maxmul(maximum, multipleOf, exclusiveMaximum)
-  } else if (  mo &&  mi && !ma ) {
+  }
+
+  if ( mo && mi && !ma ) {
     // multipleOf and minimum
     return minmul(minimum, multipleOf, exclusiveMinimum)
-  } else if (  mo && !mi && !ma ) {
+  }
+
+  if ( mo && !mi && !ma ) {
     // only multipleOf
     return 0
-  } else if ( !mo && !mi &&  ma ) {
+  }
+
+  if ( !mo && !mi && ma ) {
     // only maximum
     if ( exclusiveMaximum ) {
-      return maximum > 0  ? 0 : maximum - 1
-    } else {
-      return maximum >= 0 ? 0 : maximum
+      return maximum > 0 ? 0 : maximum - 1
     }
-  } else if ( !mo &&  mi && !ma ) {
+    return maximum >= 0 ? 0 : maximum
+
+  }
+
+  if ( !mo && mi && !ma ) {
     // only minimum
     if ( exclusiveMinimum ) {
       return minimum < 0 ? 0 : minimum + 1
-    } else {
-      return minimum <= 0 ? 0 : minimum
     }
-  } else {
-    return 0
-  }
-}
+    return minimum <= 0 ? 0 : minimum
 
-export default _integer
+  }
+  return 0
+}

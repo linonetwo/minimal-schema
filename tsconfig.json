@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "lib": ["dom", "es2018"],
+      "declaration": true,
+      "sourceMap": true,
+      "outDir": "./lib",
+      "strict": true,
+      "strictPropertyInitialization": false,
+      "types": ["mocha"],
+      "inlineSources": true,
+      "experimentalDecorators": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true
+    }
+  }
