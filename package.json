@@ -57,7 +57,6 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.10.4",
     "simple-json-schema-deref": "^0.1.0"
   }
 }

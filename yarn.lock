@@ -23,14 +23,6 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/polyfill@^7.10.4":
-  version "7.10.4"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@babel/polyfill/-/polyfill-7.10.4.tgz#915e5bfe61490ac0199008e35ca9d7d151a8e45a"
-  integrity sha1-kV5b/mFJCsAZkAjjXKnX0VGo5Fo=
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.4"
-
 "@types/chai-dom@^0.0.10":
   version "0.0.10"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/@types/chai-dom/-/chai-dom-0.0.10.tgz#0a1d454a5b6a153b3e49b7d4c8354acc0b9f412e"
@@ -398,11 +390,6 @@ contains-path@^0.1.0:
   version "0.1.0"
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/contains-path/-/contains-path-0.1.0.tgz#fe8cf184ff6670b6baef01a9d4861a5cbec4120a"
   integrity sha1-/ozxhP9mcLa67wGp1IYaXL7EEgo=
-
-core-js@^2.6.5:
-  version "2.6.11"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
-  integrity sha1-OIMUafmSK97Y7iHJ3EaYXgOZMIw=
 
 cross-spawn@^6.0.5:
   version "6.0.5"
@@ -1517,11 +1504,6 @@ readdirp@~3.3.0:
   integrity sha1-mERY0ToeQuLp9YQbEp4WLzaa/xc=
   dependencies:
     picomatch "^2.0.7"
-
-regenerator-runtime@^0.13.4:
-  version "0.13.7"
-  resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha1-ysLazIoepnX+qrrriugziYrkb1U=
 
 regexpp@^3.0.0, regexpp@^3.1.0:
   version "3.1.0"
