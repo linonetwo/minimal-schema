@@ -1,10 +1,16 @@
-# empty-schema
+# minimal-schema
 
-> :crystal_ball: Generate empty placeholder data from JSON Schemas
+This package is fork of [empty-schema](https://github.com/slurmulon/empty-schema) package, which is fork of [json-schema-empty](https://github.com/romeovs/json-schema-empty)
+
+Difference is that it introduces `format` support for strings, which means that generated data is valid against its JSON Schema.
+
+Another difference is package now contains minimal typings. They are quite simple for now. But better then nothing.
+
+> Generate empty placeholder data from JSON Schemas
 
 Generating random data is useful for testing (try out [JSON Schema Faker](https://www.npmjs.com/package/json-schema-faker) or [hazy](https://www.npmjs.com/package/hazy) if you have this need), but developers often require empty placeholder data to work with, particularly when developing web forms.
 
-The empty data that `empty-schema` generates conforms to the following:
+Data that `minimal-schema` generates conforms to the following:
   - Data is generated deterministically. If the schema is the same, the data will be the same. Exception is `string` type with date and time related `format` keyword: in this case `new Date().toISOString()` data is used.
   - Data is as simple as possible.
   - Data conforms to the *form* specified in the schema.  It will, however, sometimes fail to be valid according to the schema. The reason for this is simple: you cannot generate all values automatically (see the [rules](#rules) section for more info on this).
@@ -12,13 +18,13 @@ The empty data that `empty-schema` generates conforms to the following:
 ## Installation
 
 ```sh
-npm install --save empty-schema
+npm install --save minimal-schema
 ```
 
 ## Usage
 
-```js
-import {empty} from 'empty-schema'
+```ts
+import {empty} from 'minimal-schema'
 
 const schema = {
   type: 'object',
@@ -36,9 +42,17 @@ const schema = {
     baz: {
       type: 'string',
       minLength: 5
+    },
+    email: {
+        type: 'string',
+        format: 'email'
+    },
+    dateTime: {
+        type: 'string',
+        format: 'date-time'
     }
   },
-  required: [ 'foo', 'bar', 'baz' ]
+  required: [ 'foo', 'bar', 'baz', 'email', 'dateTime' ]
 }
 
 console.log(empty(schema))
@@ -46,7 +60,9 @@ console.log(empty(schema))
 // {
 //   foo: 15,
 //   bar: [ 0, 0, 0 ],
-//   baz: ''
+//   baz: '',
+//   email: 'a@a',
+//   dateTime: '2020-07-30T08:30:55.797Z'
 // }
 ```
 
@@ -54,10 +70,10 @@ console.log(empty(schema))
 
   - **string**: because it impossible to guess what the string
     content should be, even when patterns and length limits are given,
-    a string schema always results in the empty string: `''`.
+    a string schema always results in the empty string: `''`. Except `format` keyword. Original behavior is inherited from `json-schema-empty`.
 
-  - **integer**: `empty-schema` tries to satisfy the `minimum`, `maximum`
-    and `multipleOf` constraints whenever possible wth the additional property
+  - **integer**: `minimal-schema` tries to satisfy the `minimum`, `maximum`
+    and `multipleOf` constraints whenever possible with the additional property
     that, when it is possible, `0` is returned.
 
   - **number**: just follows the `integer` schema.
@@ -76,18 +92,17 @@ console.log(empty(schema))
   - **null**: always results in `null`.
 
   - **oneOf**, **anyOf**: selects one of the accepted types and goes from there.
-  - **allOf**: `empty-schema` merges all schemas and works from that schema
+  - **allOf**: `minimal-schema` merges all schemas and works from that schema
     to generate a value.
   - **enum**: selects the first possible value.
   - `$ref`: just works!
 
-Whenever specified, `empty-schema` uses the `default` value (even if it
+Whenever specified, `minimal-schema` uses the `default` value (even if it
 does not match the schema).
 
 ## TODO
 
-- [ ] Lazy and greedy mode (aka "least" and "most")
-- [ ] Integrate `deref`, a more robust `$ref` library (has issues with Hyper-Schema)
+- [ ] Create options: custom defaults and settings for each type
 
 ## License
 

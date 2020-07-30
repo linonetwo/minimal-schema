@@ -2,14 +2,14 @@
   "name": "minimal-schema",
   "version": "1.0.0",
   "description": "Generate minimal placeholder data from JSON Schemas",
-  "main": "./lib/empty.js",
-  "types": "./lib/empty.d.ts",
+  "main": "./lib/minimal.js",
+  "types": "./lib/minimal.d.ts",
   "scripts": {
     "build": "run-s clean build-ts",
     "build-ts": "tsc",
     "lint": "eslint \"@(src|test)/**/*.ts\"",
-    "test": "ts-mocha -p tsconfig.test.json test/**/*.ts",
-    "test:watch": "mocha --w",
+    "test": "ts-mocha -p tsconfig.test.json",
+    "test:watch": "ts-mocha -p tsconfig.test.json -w --watch-extensions ts",
     "prepublish": "npm run build",
     "clean": "rimraf ./lib"
   },

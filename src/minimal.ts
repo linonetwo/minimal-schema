@@ -13,12 +13,12 @@ import {
   DummySchema
 } from './types'
 
-export const empty = (schema: DummySchema) => {
+export const minimal = (schema: DummySchema) => {
   const denormed = deref(schema)
-  return recursiveEmpty(denormed, denormed)
+  return recursiveMinimal(denormed, denormed)
 }
 
-function recursiveEmpty(schema: DummySchema, global: DummySchema): any {
+function recursiveMinimal(schema: DummySchema, global: DummySchema): any {
   const {
     type,
     'default': default_,
@@ -38,7 +38,7 @@ function recursiveEmpty(schema: DummySchema, global: DummySchema): any {
   }
 
   if ($ref) {
-    return recursiveEmpty(
+    return recursiveMinimal(
       deref($ref as DummySchema),
       global
     )
@@ -55,7 +55,7 @@ function recursiveEmpty(schema: DummySchema, global: DummySchema): any {
 
     switch (kind) {
       case 'array':
-        return array(schema, global, recursiveEmpty)
+        return array(schema, global, recursiveMinimal)
 
       case 'boolean':
         return boolean()
@@ -70,7 +70,7 @@ function recursiveEmpty(schema: DummySchema, global: DummySchema): any {
         return getNull()
 
       case 'object':
-        return object(schema, global, recursiveEmpty)
+        return object(schema, global, recursiveMinimal)
 
       case 'string':
         return string(schema as StringSchema)
@@ -79,11 +79,11 @@ function recursiveEmpty(schema: DummySchema, global: DummySchema): any {
         throw new Error(`cannot create value of type ${type}`)
     }
   } else if (allOf) {
-    return recursiveEmpty(merge(allOf as DummySchema[]), global)
+    return recursiveMinimal(merge(allOf as DummySchema[]), global)
   } else if (anyOf) {
-    return recursiveEmpty((anyOf as DummySchema[])[0], global)
+    return recursiveMinimal((anyOf as DummySchema[])[0], global)
   } else if ( oneOf ) {
-    return recursiveEmpty((oneOf as DummySchema[])[0], global)
+    return recursiveMinimal((oneOf as DummySchema[])[0], global)
   } else {
     throw new Error(`cannot generate data from schema ${schema}`)
   }
