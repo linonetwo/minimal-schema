@@ -4,13 +4,14 @@
   "description": "Generate minimal placeholder data from JSON Schemas",
   "main": "./lib/minimal.js",
   "types": "./lib/minimal.d.ts",
+  "files": ["lib"],
   "scripts": {
     "build": "run-s clean build-ts",
-    "build-ts": "tsc",
+    "build-ts": "tsc --project tsconfig.json",
     "lint": "eslint \"@(src|test)/**/*.ts\"",
     "test": "ts-mocha -p tsconfig.test.json",
     "test:watch": "ts-mocha -p tsconfig.test.json -w --watch-extensions ts",
-    "prepublish": "npm run build",
+    "prepublish": "run-s test build",
     "clean": "rimraf ./lib"
   },
   "repository": {
