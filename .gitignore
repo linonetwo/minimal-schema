@@ -3,3 +3,4 @@ coverage.html
 package-lock.json
 lib
 yarn-error.log
+.vscode
