@@ -1,6 +1,6 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -92,7 +92,7 @@ describe('integers', () => {
       type: 'integer'
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should return minimum if divisible by multipleOf', () => {
@@ -102,7 +102,7 @@ describe('integers', () => {
       multipleOf: 2
     }
 
-    empty(schema).should.equal(10)
+    minimal(schema).should.equal(10)
   })
 
   it('should return min if min, max and multiple are given', () => {
@@ -113,7 +113,7 @@ describe('integers', () => {
       multipleOf: 2
     }
 
-    empty(schema).should.equal(10)
+    minimal(schema).should.equal(10)
   })
 
   it('should return min if min, max and multiple are given and 0 is not in range', () => {
@@ -124,7 +124,7 @@ describe('integers', () => {
       multipleOf: 2
     }
 
-    empty(schema).should.equal(10)
+    minimal(schema).should.equal(10)
   })
 
   it('should return min if min, max and multiple are given', () => {
@@ -135,7 +135,7 @@ describe('integers', () => {
       multipleOf: 2
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should return 0 if only multipleOf is given', () => {
@@ -144,7 +144,7 @@ describe('integers', () => {
       multipleOf: 2
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should return 0 if maximum allows it', () => {
@@ -154,27 +154,27 @@ describe('integers', () => {
       maximum: 10
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should work with only minimum', () => {
-    empty({
+    minimal({
       type: 'integer',
       minimum: 5
     }).should.equal(5)
 
-    empty({
+    minimal({
       type: 'integer',
       minimum: -5,
       exclusiveMinimum: true
     }).should.equal(0)
 
-    empty({
+    minimal({
       type: 'integer',
       minimum: -5
     }).should.equal(0)
 
-    empty({
+    minimal({
       type: 'integer',
       minimum: 5,
       exclusiveMinimum: true
@@ -182,29 +182,29 @@ describe('integers', () => {
   })
 
   it('should work with only maximum', () => {
-    empty({
+    minimal({
       type: 'integer',
       maximum: 5
     }).should.equal(0)
 
-    empty({
+    minimal({
       type: 'integer',
       maximum: 5,
       exclusiveMaximum: true
     }).should.equal(0)
 
-    empty({
+    minimal({
       type: 'integer',
       maximum: 5
     }).should.equal(0)
 
-    empty({
+    minimal({
       type: 'integer',
       maximum: -5,
       exclusiveMaximum: true
     }).should.equal(-6)
 
-    empty({
+    minimal({
       type: 'integer',
       maximum: -5
     }).should.equal(-5)
@@ -216,7 +216,7 @@ describe('integers', () => {
       default: 42
     }
 
-    empty(schema).should.equal(42)
+    minimal(schema).should.equal(42)
   })
 })
 

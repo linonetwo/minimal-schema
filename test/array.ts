@@ -1,13 +1,13 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 
 chai.should()
 
 describe('array schema definition', () => {
 
   it('should yield empty array', (done) => {
-    empty({
+    minimal({
       type: 'array'
     }).should.deep.equal([])
 
@@ -15,7 +15,7 @@ describe('array schema definition', () => {
   })
 
   it('should work with tuples', (done) => {
-    empty({
+    minimal({
       type: 'array',
       items: [
         {type: 'integer'},
@@ -27,7 +27,7 @@ describe('array schema definition', () => {
   })
 
   it('should work with minItems', (done) => {
-    empty({
+    minimal({
       type: 'array',
       items:{type: 'integer'},
       minItems: 5

@@ -1,6 +1,6 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -11,6 +11,6 @@ describe('null schema definition', () => {
       type: 'null'
     }
 
-    chai.should().not.exist(empty(schema))
+    chai.should().not.exist(minimal(schema))
   })
 })

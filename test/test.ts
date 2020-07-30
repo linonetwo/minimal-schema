@@ -1,12 +1,12 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 import {DummySchema} from '../src/types'
 
 chai.should()
 
 function throwing(schema?: DummySchema, err = Error) {
-  (() => empty(schema!)).should.Throw(err)
+  (() => minimal(schema!)).should.Throw(err)
 }
 
 describe('errors', () => {

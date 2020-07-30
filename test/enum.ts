@@ -1,6 +1,6 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -13,6 +13,6 @@ describe('enum schema definition', () => {
       ]
     }
 
-    empty(schema).should.equal(42)
+    minimal(schema).should.equal(42)
   })
 })

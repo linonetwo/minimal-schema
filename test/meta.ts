@@ -1,6 +1,6 @@
 import chai from 'chai'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -10,7 +10,7 @@ describe('meta properties', () => {
       oneOf: [ {type: 'integer'}, {type: 'string'} ]
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should work with anyOf', () => {
@@ -18,7 +18,7 @@ describe('meta properties', () => {
       anyOf: [ {type: 'integer'}, {type: 'string'} ]
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should work with allOf', () => {
@@ -26,7 +26,7 @@ describe('meta properties', () => {
       allOf: [ {type: 'integer'}, {minimum: 5} ]
     }
 
-    empty(schema).should.equal(5)
+    minimal(schema).should.equal(5)
   })
 
   it('should work for type unions', () => {
@@ -34,7 +34,7 @@ describe('meta properties', () => {
       type: [ 'integer', 'string' ]
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 })
 

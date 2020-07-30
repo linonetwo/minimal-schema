@@ -1,7 +1,7 @@
 import chai from 'chai'
 import Ajv from 'ajv'
 
-import {empty} from '../src/empty'
+import {minimal} from '../src/minimal'
 import {DummySchema} from '../src/types'
 
 chai.should()
@@ -13,7 +13,7 @@ describe('string schema definition', () => {
       type: 'string'
     }
 
-    empty(schema).should.equal('')
+    minimal(schema).should.equal('')
   })
 
   it('string schema with default should work', () => {
@@ -22,7 +22,7 @@ describe('string schema definition', () => {
       default: 'foo'
     }
 
-    empty(schema).should.equal('foo')
+    minimal(schema).should.equal('foo')
   })
 
   describe('format', () => {
@@ -46,7 +46,7 @@ describe('string schema definition', () => {
     ].forEach(format => {
       it(`should generate valid data for '${format}' format`, () => {
         const schema = {type: 'string', format}
-        createValidation(schema)(empty(schema)).should.be.true
+        createValidation(schema)(minimal(schema)).should.be.true
       })
     })
   })
