@@ -24,7 +24,7 @@ npm install --save minimal-schema
 ## Usage
 
 ```ts
-import {empty} from 'minimal-schema'
+import {minimal} from 'minimal-schema'
 
 const schema = {
   type: 'object',
