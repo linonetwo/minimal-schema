@@ -1,10 +1,12 @@
-import empty from '../src/empty'
-import chai  from 'chai'
+import chai from 'chai'
+
+import {minimal} from '../src/minimal'
+import {DummySchema} from '../src/types'
 
 chai.should()
 
-function throwing(schema, err = Error) {
-  (() => empty(schema)).should.Throw(err)
+function throwing(schema?: DummySchema, err = Error) {
+  (() => minimal(schema!)).should.Throw(err)
 }
 
 describe('errors', () => {

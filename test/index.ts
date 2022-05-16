@@ -1,5 +1,6 @@
-import empty from '../src/index'
-import chai  from 'chai'
+import chai from 'chai'
+
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -11,7 +12,7 @@ describe('index', () => {
         type: 'object'
       }
 
-      empty(schema).should.deep.equal({})
+      minimal(schema).should.deep.equal({})
     })
   })
 

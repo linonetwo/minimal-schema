@@ -1,5 +1,6 @@
-import empty from '../src/empty'
 import chai from 'chai'
+
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -10,7 +11,7 @@ describe('boolean schema definition', () => {
       type: 'boolean'
     }
 
-    empty(schema).should.equal(false)
+    minimal(schema).should.equal(false)
 
     done()
   })
@@ -21,7 +22,7 @@ describe('boolean schema definition', () => {
       default: true
     }
 
-    empty(schema).should.equal(true)
+    minimal(schema).should.equal(true)
 
     done()
   })

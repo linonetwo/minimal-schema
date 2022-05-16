@@ -1,5 +1,6 @@
-import empty from '../src/empty'
-import chai  from 'chai'
+import chai from 'chai'
+
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -10,7 +11,7 @@ describe('object schema definition', () => {
       type: 'object'
     }
 
-    empty(schema).should.deep.equal({})
+    minimal(schema).should.deep.equal({})
   })
 
   it('should create the fields when they are required', () => {
@@ -27,7 +28,7 @@ describe('object schema definition', () => {
       required: ['foo', 'bar']
     }
 
-    empty(schema).should.have.keys(['foo', 'bar'])
+    minimal(schema).should.have.keys(['foo', 'bar'])
   })
 
   it('should work with default', () => {
@@ -41,11 +42,11 @@ describe('object schema definition', () => {
       default: def
     }
 
-    empty(schema).should.deep.equal(def)
+    minimal(schema).should.deep.equal(def)
   })
 
   xit('should error when required object property is not given', () => {
-    const func = () => empty({
+    const func = () => minimal({
       type: 'object',
       properties: {},
       required: ['foo']

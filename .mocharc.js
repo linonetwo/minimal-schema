@@ -2,12 +2,11 @@
 
 module.exports = {
   diff: true,
-  extension: ['js'],
+  'watch-files': ['test/**/*.ts', 'src/**/*.ts'],
+  recursive: ['test/**/*.ts'],
   package: './package.json',
   reporter: 'nyan',
   slow: 75,
   timeout: 2000,
-  ui: 'bdd',
-  require: ['@babel/polyfill', '@babel/register'],
-  'watch-files': ['test/**/*.*']
+  ui: 'bdd'
 };

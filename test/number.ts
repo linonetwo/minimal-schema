@@ -1,5 +1,6 @@
-import empty from '../src/empty'
-import chai  from 'chai'
+import chai from 'chai'
+
+import {minimal} from '../src/minimal'
 
 chai.should()
 
@@ -10,7 +11,7 @@ describe('numbers', () => {
       type: 'number'
     }
 
-    empty(schema).should.equal(0)
+    minimal(schema).should.equal(0)
   })
 
   it('should use default', () => {
@@ -19,7 +20,7 @@ describe('numbers', () => {
       default: 42
     }
 
-    empty(schema).should.equal(42)
+    minimal(schema).should.equal(42)
   })
 
   it('should work with non-integer multipleOf', () => {
@@ -29,7 +30,7 @@ describe('numbers', () => {
       minimum: 5
     }
 
-    empty(schema).should.equal(7)
+    minimal(schema).should.equal(7)
   })
 
 })
