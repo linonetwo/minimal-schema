@@ -8,7 +8,7 @@ type ObjectWithRequired = {
 export function object(
   schema: DummySchema,
   global: DummySchema,
-  empty: (schema: DummySchema, global: DummySchema) => any
+  minimal: (schema: DummySchema, global: DummySchema) => any
 ) {
   if (!schema.required) {
     return {}
@@ -22,7 +22,7 @@ export function object(
         throw new Error(`property \`${next}\` not defined on object`)
       }
 
-      prev[next] = empty(prop, global)
+      prev[next] = minimal(prop, global)
 
       return prev
     }, {})

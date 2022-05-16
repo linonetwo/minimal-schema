@@ -26,6 +26,18 @@ describe('array schema definition', () => {
     done()
   })
 
+  it('should work with `prefixItems` tuples', (done) => {
+    minimal({
+      type: 'array',
+      prefixItems: [
+        {type: 'integer'},
+        {type: 'string'}
+      ]
+    }).should.deep.equal([0, ''])
+
+    done()
+  })
+
   it('should work with minItems', (done) => {
     minimal({
       type: 'array',

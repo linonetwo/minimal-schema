@@ -1,6 +1,6 @@
 {
   "name": "minimal-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate minimal placeholder data from JSON Schemas",
   "main": "./lib/minimal.js",
   "types": "./lib/minimal.d.ts",

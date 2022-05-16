@@ -2,9 +2,10 @@
 
 This package is fork of [empty-schema](https://github.com/slurmulon/empty-schema) package, which is fork of [json-schema-empty](https://github.com/romeovs/json-schema-empty)
 
-Difference is that it introduces `format` support for strings, which means that generated data is valid against its JSON Schema.
-
-Another difference is package now contains minimal typings. They are quite simple for now. But better then nothing.
+Difference:
+  - introduces `format` support for strings, which means that generated data is valid against its JSON Schema;
+  - supports `prefixItems` tuples;
+  - contains minimal typescript typings: quite simple for now, but better than nothing.
 
 > Generate empty placeholder data from JSON Schemas
 
@@ -68,9 +69,7 @@ console.log(empty(schema))
 
 ## Rules
 
-  - **string**: because it impossible to guess what the string
-    content should be, even when patterns and length limits are given,
-    a string schema always results in the empty string: `''`. Except `format` keyword. Original behavior is inherited from `json-schema-empty`.
+  - **string**: except when `format` keyword is present, it impossible to guess what the string content should be, even when patterns and length limits are given, a string schema always results in the empty string: `''`. . Original behavior is inherited from `json-schema-empty`.
 
   - **integer**: `minimal-schema` tries to satisfy the `minimum`, `maximum`
     and `multipleOf` constraints whenever possible with the additional property
@@ -83,10 +82,11 @@ console.log(empty(schema))
     Object size is ignored completely, for the same reason that the
     strings are empty: we cannot guess the keys.
 
-  - **array**: when the `item` type is given, and `minItems` is given,
-    the shortest array that matches this is generated.  It also works
-    when `items` is a tuple.  `maxItems` is ignored.  Whenever possible,
-    the empty array is returned.
+  - **array**: 
+    - when the `item` type is given, and `minItems` is given, the shortest array that matches this is generated;
+    - supports `prefixItems` and `items` is a tuple;
+    - `maxItems` is ignored;
+    - whenever possible, the empty array is returned.
 
   - **boolean**: always results in `false`.
   - **null**: always results in `null`.
