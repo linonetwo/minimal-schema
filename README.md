@@ -56,7 +56,7 @@ const schema = {
   required: [ 'foo', 'bar', 'baz', 'email', 'dateTime' ]
 }
 
-console.log(empty(schema))
+console.log(minimal(schema))
 
 // {
 //   foo: 15,
